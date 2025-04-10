@@ -10,18 +10,35 @@
     <link rel="stylesheet" href="/css/index-style.css">
 </head>
 <body>
+<div class="container">
+    <div class="header">
+        <h1>메모 앱</h1>
+        <p>중요한 생각을 간편하게 기록하세요</p>
+    </div>
+
     <nav>
-        <form th:action="@{/delete-all}"><button>전체 삭제</button></form>
-        <a th:href="@{/add}">등록</a>
+        <form th:action="@{/add}">
+            <button type="submit" class="add-btn">새 메모 추가</button>
+        </form>
+        <form th:action="@{/delete-all}">
+            <button type="submit" class="delete-all-btn">전체 삭제</button>
+        </form>
     </nav>
-    <p th:text="${msg}"></p>
-    <ul>
-        <li th:each="memo : ${memoList}">
-            <span th:text="${memo.text}"></span>
-            <a th:href="@{/update/{id}(id=${memo.id})}">수정</a>
-            <form method="post" th:action="@{/delete/{id}(id=${memo.id()})}"><button>삭제</button></form>
+
+    <div class="message" th:text="${msg}"></div>
+
+    <ul class="memo-list">
+        <li th:each="memo : ${memoList}" class="memo-item">
+            <div class="memo-text" th:text="${memo.text}"></div>
+            <div class="memo-actions">
+                <a class="edit-btn" th:href="@{/update/{id}(id=${memo.id})}">수정</a>
+                <form method="post" th:action="@{/delete/{id}(id=${memo.id()})}">
+                    <button class="delete-btn">삭제</button>
+                </form>
+            </div>
         </li>
     </ul>
-
+</div>
 </body>
+
 </html>

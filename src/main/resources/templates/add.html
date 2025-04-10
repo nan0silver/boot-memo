@@ -10,17 +10,27 @@
 
 </head>
 <body>
-<nav>
-    <a th:href="@{/}">홈으로</a>
-</nav>
-<p th:text="${msg}"></p>
-<section>
-    <form th:action="@{/add}" th:method="post" th:object="${memoForm}">
-        <label>내용 :
-            <input th:field="*{text}">
-        </label>
-        <button>등록</button>
-    </form>
-</section>
+<div class="container">
+    <div class="header">
+        <h1>새 메모 작성</h1>
+        <p>새로운 생각을 기록하세요</p>
+    </div>
+
+    <nav>
+        <a class="btn home-btn" th:href="@{/}">홈으로</a>
+    </nav>
+
+    <div class="message" th:text="${msg}"></div>
+
+    <section class="form-section">
+        <form th:action="@{/add}" th:method="post" th:object="${memoForm}">
+            <div class="form-group">
+                <label for="text">메모 내용</label>
+                <input type="text" id="text" th:field="*{text}" placeholder="여기에 내용을 입력하세요...">
+            </div>
+            <button class="submit-btn">등록</button>
+        </form>
+    </section>
+</div>
 </body>
 </html>

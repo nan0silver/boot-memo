@@ -6,19 +6,30 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>메모 수정</title>
+    <link rel="stylesheet" href="/css/update-style.css">
 </head>
 <body>
-<nav>
-    <a th:href="@{/}">홈으로</a>
-</nav>
-<p th:text="${msg}"></p>
-<section>
-    <form th:action="@{/update/{id}(id=${memo.id()})}" th:method="post">
-        <label>내용 :
-            <input th:name="text" th:value="${memo.text}">
-        </label>
-        <button>수정</button>
-    </form>
-</section>
+<div class="container">
+    <div class="header">
+        <h1>메모 수정</h1>
+        <p>기존 메모 내용을 수정하세요</p>
+    </div>
+
+    <nav>
+        <a class="btn home-btn" th:href="@{/}">홈으로</a>
+    </nav>
+
+    <div class="message" th:text="${msg}"></div>
+
+    <section class="form-section">
+        <form th:action="@{/update/{id}(id=${memo.id()})}" th:method="post">
+            <div class="form-group">
+                <label for="text">메모 내용</label>
+                <input type="text" id="text" th:name="text" th:value="${memo.text}" placeholder="여기에 내용을 입력하세요...">
+            </div>
+            <button class="submit-btn">수정</button>
+        </form>
+    </section>
+</div>
 </body>
 </html>

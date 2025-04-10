@@ -1,91 +1,214 @@
-body {
-    font-family: 'Segoe UI', sans-serif;
+:root {
+    --primary-color: #6366f1;
+    --secondary-color: #8b5cf6;
+    --accent-color: #ec4899;
+    --bg-color: #f9fafb;
+    --card-bg: #ffffff;
+    --text-color: #1f2937;
+    --text-secondary: #6b7280;
+    --shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    --radius: 10px;
+}
+
+* {
     margin: 0;
     padding: 0;
-    background: #f9f9f9;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-nav {
-    background: #4a90e2;
-    padding: 1rem;
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    color: white;
-}
-nav form,
-nav a {
-    margin: 0 0.5rem;
-}
-nav button,
-nav a {
-    background: white;
-    color: #4a90e2;
-    border: none;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-}
-nav button:hover,
-nav a:hover {
-    background: #e0eaff;
+    min-height: 100vh;
+    padding: 2rem 1rem;
 }
 
 .container {
-    max-width: 600px;
-    margin: 2rem auto;
-    background: white;
-    padding: 1.5rem;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    border-radius: 10px;
+    width: 100%;
+    max-width: 768px;
+    margin: 0 auto;
 }
 
-ul {
-    list-style: none;
-    padding: 0;
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
-li {
+.header h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+button, a.btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow);
+}
+
+button:hover, a.btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.delete-all-btn {
+    background-color: #ef4444;
+}
+
+.delete-all-btn:hover {
+    background-color: #dc2626;
+}
+
+.add-btn {
+    background-color: var(--accent-color);
+}
+
+.add-btn:hover {
+    background-color: #db2777;
+}
+
+.message {
+    background-color: #dbeafe;
+    color: #1e40af;
     padding: 1rem;
-    border-bottom: 1px solid #ddd;
+    border-radius: var(--radius);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    width: 100%;
+    max-width: 768px;
+    display: none;
+}
+
+.message:not(:empty) {
+    display: block;
+}
+
+.memo-list {
+    list-style: none;
+    width: 100%;
+    max-width: 768px;
+}
+
+.memo-item {
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.memo-item:hover {
+    transform: translateY(-3px);
 }
 
 .memo-text {
-    flex-grow: 1;
+    font-size: 1.1rem;
+    margin-right: 1rem;
+    flex: 1;
 }
 
-li form {
-    display: inline-block;
-    margin-left: 0.5rem;
+.memo-actions {
+    display: flex;
+    gap: 0.5rem;
 }
 
-li button {
-    background: #f44336;
-    border: none;
+.edit-btn {
+    background-color: #3b82f6;
     color: white;
-    padding: 0.4rem 0.8rem;
-    border-radius: 4px;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.edit-btn:hover {
+    background-color: #2563eb;
+}
+
+.delete-btn {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    font-size: 0.9rem;
     cursor: pointer;
 }
 
-li button:hover {
-    background: #d32f2f;
+.delete-btn:hover {
+    background-color: #dc2626;
 }
 
-li button.edit {
-    background: #4caf50;
+/* Dark mode setting for future implementation */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #1f2937;
+        --card-bg: #374151;
+        --text-color: #f9fafb;
+        --text-secondary: #d1d5db;
+        --shadow: rgba(0, 0, 0, 0.25) 0px 4px 12px;
+    }
+
+    .message {
+        background-color: #1e3a8a;
+        color: #dbeafe;
+    }
 }
 
-li button.edit:hover {
-    background: #388e3c;
-}
+/* Responsive design */
+@media (max-width: 640px) {
+    .memo-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
-p {
-    text-align: center;
-    font-weight: bold;
-    color: #333;
+    .memo-text {
+        margin-bottom: 1rem;
+        margin-right: 0;
+    }
+
+    .memo-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
 }
