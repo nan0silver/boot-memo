@@ -19,7 +19,7 @@
         <li th:each="memo : ${memoList}">
             <span th:text="${memo.text}"></span>
             <form><button>수정</button></form>
-            <form><button>삭제</button></form>
+            <form method="post" th:action="@{/delete/{id}(id=${memo.id()})}"><button>삭제</button></form>
         </li>
     </ul>
 
